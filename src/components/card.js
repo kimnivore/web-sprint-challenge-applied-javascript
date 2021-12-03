@@ -17,6 +17,7 @@ import axios from 'axios';
   //   </div>
   // </div>
   //
+
   const Card = (article) => {
     const card = document.createElement('div');
     const headline = document.createElement('div');
@@ -27,9 +28,9 @@ import axios from 'axios';
 
     card.classList.add('card');
     headline.classList.add('headline');
-    headline.textContent = article.headline;
     author.classList.add('author');
     imgContainer.classList.add('img-container');
+    headline.textContent = article.headline;
     img.src = article.authorPhoto;
     authorName.textContent = article.authorName;
 
@@ -44,7 +45,39 @@ import axios from 'axios';
     })
     
     return card;
-}
+  }
+
+  // const Card = (article) => {
+  //   const card = document.createElement('div');
+  //   const headline = document.createElement('div');
+  //   const author = document.createElement('div');
+  //   const imgContainer = document.createElement('div');
+  //   const img = document.createElement('img');
+  //   const authorName = document.createElement('span');
+
+  //   card.classList.add('card');
+  //   headline.classList.add('headline');
+  //   author.classList.add('author');
+  //   imgContainer.classList.add('img-container');
+
+  //   article.forEach(item => {
+  //     headline.textContent = item.headline;
+  //     img.src = item.authorPhoto;
+  //     authorName.textContent = item.authorName;
+  //   });
+
+  //   card.appendChild(headline);
+  //   card.appendChild(author);
+  //   author.appendChild(imgContainer);
+  //   author.appendChild(authorName);
+  //   imgContainer.appendChild(img);
+
+  //   card.addEventListener('click', () => {
+  //     console.log(headline.textContent);
+  //   })
+    
+  //   return card;
+  // }
 
 
   // TASK 6
@@ -88,20 +121,23 @@ import axios from 'axios';
     }).finally(() => console.log('done'));
   }
 
+//   let articles = [];
+//   console.log(articles);
+
+
 //   const cardAppender = (selector) => {
-//     for(let i = 0; i < response.data.articles.length; i++) {
-//       for(let j = 0; j < response.data.articles[i].length; j++){
+//     // for(let i = 0; i < response.data.articles.length; i++) {
 //         axios.get(`http://localhost:5000/api/articles`)
 //         .then(response => {
-//           response.data.articles[i][j]         
-//           const newCard = Card(response.data.articles);
-//           document.querySelector(selector).appendChild(newCard);
-//           console.log(response.data.articles);
+//           console.log(response.data.articles.bootstrap);
+//           articles.push(response.data.articles)//, response.data.articles.javascript, response.data.articles.jquery, response.data.articles.node, response.data.articles.technology);
+//           for(let i = 0; i < response.data.articles.length; i++){
+//             document.querySelector(selector).appendChild(Card(response.data.articles[i]));
+//           }      
 //         }).catch(error => {
 //           console.error(error);
 //         }).finally(() => console.log('done'));
-//   }
+  
 // }
-//   }
 
 export { Card, cardAppender }
