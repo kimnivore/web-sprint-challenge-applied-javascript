@@ -11,9 +11,9 @@ const Header = (title, date, temp) => {
   titles.textContent = title;
   temps.textContent = temp;
 
-  header.appendChild(date);
-  header.appendChild(title);
-  header.appendChild(temp);
+  header.appendChild(dates);
+  header.appendChild(titles);
+  header.appendChild(temps);
 
   return header;
 }
@@ -34,15 +34,16 @@ const Header = (title, date, temp) => {
 
 
 const headerAppender = (selector) => {
+  const parent = document.querySelector(selector);
+  parent.appendChild(Header(title, date, temp))
+
+}
   // TASK 2
   // ---------------------
   // Implement this function taking a css selector as its only argument.
   // It should create a header using the Header component above, passing arguments of your choosing.
   // It should append the header to the element in the DOM that matches the given selector.
   //
- const parent = document.querySelector(selector);
-  parent.appendChild(Header(title, date, temp))
-
-}
+ 
 
 export { Header, headerAppender }
