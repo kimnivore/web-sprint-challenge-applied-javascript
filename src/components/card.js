@@ -64,32 +64,10 @@ import axios from 'axios';
        for(let key in response.data.articles) {
          for(let i = 0; i < response.data.articles[key].length; i++){
            document.querySelector(selector).appendChild(Card(response.data.articles[key][i]));
-         }
-       }
+         }}
     }).catch(error =>{
       console.error(error);
     }).finally(() => console.log('done'));
   }
-
-  // const cardAppender = (selector) => {
-  //   axios.get(`http://localhost:5000/api/articles`)
-  //   .then(response => {
-  //     console.log(response.data.articles);
-  //     response.data.articles.bootstrap.forEach(item => {
-  //       document.querySelector(selector).appendChild(Card(item));
-  //     response.data.articles.javascript.forEach(item => {
-  //       document.querySelector(selector).appendChild(Card(item));
-  //     response.data.articles.jquery.forEach(item => {
-  //       document.querySelector(selector).appendChild(Card(item));
-  //     response.data.articles.node.forEach(item => {
-  //       document.querySelector(selector).appendChild(Card(item));
-  //     response.data.articles.technology.forEach(item => {
-  //       document.querySelector(selector).appendChild(Card(item));
-  //       })})})})})
-  //   }).catch(error => {
-  //     console.error(error);
-  //   }).finally(() => console.log('done'));
-  // }
-
 
 export { Card, cardAppender }
