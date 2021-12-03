@@ -1,4 +1,4 @@
-const Card = (article) => {
+
   // TASK 5
   // ---------------------
   // Implement this function, which should return the markup you see below.
@@ -17,6 +17,7 @@ const Card = (article) => {
   //   </div>
   // </div>
   //
+  const Card = (article) => {
 }
 
 const cardAppender = (selector) => {

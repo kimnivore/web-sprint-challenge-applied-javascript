@@ -16,22 +16,20 @@ import axios from 'axios';
   //
 const Tabs = (topics) => {
   const topic = document.createElement('div');
-  const java = document.createElement('div');
-  const boot = document.createElement('div');
-  const tech = document.createElement('div');
-
   topic.classList.add('topics');
-  java.classList.add('tab');
-  boot.classList.add('tab');
-  tech.classList.add('tab');
-  java.textContent = topics[0];
-  boot.textContent = topics[1];
-  tech.textContent = topics[2];
-
-  topic.appendChild(java);
-  topic.appendChild(boot);
-  topic.appendChild(tech);
-
+  axios.get(`http://localhost:5000/api/topics`)
+  .then(response => {
+    console.log(response.data.topics);
+    response.data.topics.forEach(item => {
+      const top = document.createElement('div');
+      top.classList.add('tab');
+      top.textContent = item;
+      topic.appendChild(top);
+    })
+  }).catch(error => {
+    console.error(error);
+  }).finally(() => console.log('done'));
+  
   return topic;
 }
 
@@ -44,16 +42,6 @@ const Tabs = (topics) => {
   // Append the tabs to the element in the DOM that matches the selector passed to the function.
   //
 
-  axios.get(`http://localhost:5000/api/topics`)
-  .then(response => {
-    Tabs(response.data.topics);
-    console.log(response);
-  }).catch(error => {
-    console.error(error);
-  }).finally(() => console.log('done'));
-  
-
-    // for(let i = 0; i < obj.data.topics.length; i++)
 
   const tabsAppender = (selector) => {
     const parent = document.querySelector(selector);
