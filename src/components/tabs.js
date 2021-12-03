@@ -18,13 +18,14 @@ import axios from 'axios';
   const Tabs = (topics) => {
     const topic = document.createElement('div');
     topic.classList.add('topics');
-    const top = document.createElement('div');
-    top.classList.add('tab');
-    top.textContent = topics;
-    topic.appendChild(top);
+    topics.forEach(item => {
+      const top = document.createElement('div');
+      top.classList.add('tab');
+      top.textContent = item;
+      topic.appendChild(top);
+    }); 
     return topic;
   }
-
   // TASK 4
     // ---------------------
     // Implement this function which takes a css selector as its only argument.
@@ -32,17 +33,21 @@ import axios from 'axios';
     // Find the array of topics inside the response, and create the tabs using the Tabs component.
     // Append the tabs to the element in the DOM that matches the selector passed to the function.
     //
+    let topics = [];
     const tabsAppender = (selector) => {
       axios.get(`http://localhost:5000/api/topics`)
     .then(response => {
       console.log(response.data.topics);
-      response.data.topics.forEach(item => {
-        document.querySelector(selector).appendChild(Tabs(item));
-      })
+      topics.push(response.data.topics);
+      for(let i = 0; i < response.data.topics.length; i++){
+        document.querySelector(selector).appendChild(Tabs(topics[i]));
+      }
     }).catch(error => {
       console.error(error);
     }).finally(() => console.log('done'));
     }
+
+  
     
 
 
@@ -50,28 +55,3 @@ import axios from 'axios';
 
 
 export { Tabs, tabsAppender }
-
-
- // const Tabs = (topics) => {
-  //   const topic = document.createElement('div');
-  //   topic.classList.add('topics');
-  //   axios.get(`http://localhost:5000/api/topics`)
-  //   .then(response => {
-  //     console.log(response.data.topics);
-  //     response.data.topics.forEach(item => {
-  //       const top = document.createElement('div');
-  //       top.classList.add('tab');
-  //       top.textContent = item;
-  //       topic.appendChild(top);
-  //     })
-  //   }).catch(error => {
-  //     console.error(error);
-  //   }).finally(() => console.log('done'));
-    
-  //   return topic;
-  // }
-  
-  //   const tabsAppender = (selector) => {
-  //     const parent = document.querySelector(selector);
-  //     parent.appendChild(Tabs());
-  //   }
