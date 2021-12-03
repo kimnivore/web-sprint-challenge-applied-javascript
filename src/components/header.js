@@ -29,7 +29,7 @@ const Header = (title, date, temp) => {
 
   return header;
 }
-
+console.log(Header('Lambda Times', 'January 6, 2021', 26));
  // TASK 2
   // ---------------------
   // Implement this function taking a css selector as its only argument.
@@ -37,10 +37,10 @@ const Header = (title, date, temp) => {
   // It should append the header to the element in the DOM that matches the given selector.
   //
  
-
+const newHeader = Header('Lambda Times', 'January 6, 2021', 26);
 const headerAppender = (selector) => {
   const parent = document.querySelector(selector);
-  parent.appendChild(Header());
+  parent.appendChild(newHeader);
 }
  
  
