@@ -30,6 +30,8 @@ import axios from 'axios';
     headline.classList.add('headline');
     author.classList.add('author');
     imgContainer.classList.add('img-container');
+
+
     headline.textContent = article.headline;
     img.src = article.authorPhoto;
     authorName.textContent = article.authorName;
@@ -47,8 +49,6 @@ import axios from 'axios';
     return card;
   }
 
-
-
   // TASK 6
   // ---------------------
   // Implement this function that takes a css selector as its only argument.
@@ -57,28 +57,39 @@ import axios from 'axios';
   // Create a card from each and every article object in the response, using the Card component.
   // Append each card to the element in the DOM that matches the selector passed to the function.
   //
-  
-
-
   const cardAppender = (selector) => {
     axios.get(`http://localhost:5000/api/articles`)
-    .then(response => {
-      console.log(response.data.articles);
-      response.data.articles.bootstrap.forEach(item => {
-        document.querySelector(selector).appendChild(Card(item));
-      response.data.articles.javascript.forEach(item => {
-        document.querySelector(selector).appendChild(Card(item));
-      response.data.articles.jquery.forEach(item => {
-        document.querySelector(selector).appendChild(Card(item));
-      response.data.articles.node.forEach(item => {
-        document.querySelector(selector).appendChild(Card(item));
-      response.data.articles.technology.forEach(item => {
-        document.querySelector(selector).appendChild(Card(item));
-        })})})})})
-    }).catch(error => {
+     .then(response => {
+       console.log(response.data.articles);
+       for(let key in response.data.articles) {
+         for(let i = 0; i < response.data.articles[key].length; i++){
+           document.querySelector(selector).appendChild(Card(response.data.articles[key][i]));
+         }
+       }
+    }).catch(error =>{
       console.error(error);
     }).finally(() => console.log('done'));
   }
+
+  // const cardAppender = (selector) => {
+  //   axios.get(`http://localhost:5000/api/articles`)
+  //   .then(response => {
+  //     console.log(response.data.articles);
+  //     response.data.articles.bootstrap.forEach(item => {
+  //       document.querySelector(selector).appendChild(Card(item));
+  //     response.data.articles.javascript.forEach(item => {
+  //       document.querySelector(selector).appendChild(Card(item));
+  //     response.data.articles.jquery.forEach(item => {
+  //       document.querySelector(selector).appendChild(Card(item));
+  //     response.data.articles.node.forEach(item => {
+  //       document.querySelector(selector).appendChild(Card(item));
+  //     response.data.articles.technology.forEach(item => {
+  //       document.querySelector(selector).appendChild(Card(item));
+  //       })})})})})
+  //   }).catch(error => {
+  //     console.error(error);
+  //   }).finally(() => console.log('done'));
+  // }
 
 
 export { Card, cardAppender }

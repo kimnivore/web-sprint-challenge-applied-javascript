@@ -52,8 +52,4 @@ import axios from 'axios';
   
     
 
-
- 
-
-
 export { Tabs, tabsAppender }
