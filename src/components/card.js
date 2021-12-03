@@ -58,18 +58,50 @@ import axios from 'axios';
   // const parent = document.querySelector(selector);
   //   parent.appendChild(Card());
   
+  // let newArray =
+  // axios.get(`http://localhost:5000/api/articles`)
+  // .then(response => {
+  //   const newCard = Card(response.data.articles);
+  //   console.log(response);
+  // }).catch(error => {
+  //   console.error(error);
+  // }).finally(() => console.log('done'));
+
 
   const cardAppender = (selector) => {
-    // for(let i = 0; i < articles.length; i++) {
     axios.get(`http://localhost:5000/api/articles`)
-  .then(response => {
-    const newCard = Card(response.data.articles);
-    document.querySelector(selector).appendChild(newCard);
-    console.log(response);
-  }).catch(error => {
-    console.error(error);
-  }).finally(() => console.log('done'));
-}
+    .then(response => {
+      console.log(response.data.articles);
+      response.data.articles.bootstrap.forEach(item => {
+        document.querySelector(selector).appendChild(Card(item));
+      response.data.articles.javascript.forEach(item => {
+        document.querySelector(selector).appendChild(Card(item));
+      response.data.articles.jquery.forEach(item => {
+        document.querySelector(selector).appendChild(Card(item));
+      response.data.articles.node.forEach(item => {
+        document.querySelector(selector).appendChild(Card(item));
+      response.data.articles.technology.forEach(item => {
+        document.querySelector(selector).appendChild(Card(item));
+        })})})})})
+    }).catch(error => {
+      console.error(error);
+    }).finally(() => console.log('done'));
+  }
 
+//   const cardAppender = (selector) => {
+//     for(let i = 0; i < response.data.articles.length; i++) {
+//       for(let j = 0; j < response.data.articles[i].length; j++){
+//         axios.get(`http://localhost:5000/api/articles`)
+//         .then(response => {
+//           response.data.articles[i][j]         
+//           const newCard = Card(response.data.articles);
+//           document.querySelector(selector).appendChild(newCard);
+//           console.log(response.data.articles);
+//         }).catch(error => {
+//           console.error(error);
+//         }).finally(() => console.log('done'));
+//   }
+// }
+//   }
 
 export { Card, cardAppender }
